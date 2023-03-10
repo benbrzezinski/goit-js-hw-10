@@ -5,6 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework 10</title>
+    <style>
+      .country-list {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      .country-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+      }
+
+      .country-item::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        background-color: #858574;
+        width: 400px;
+        height: 1px;
+      }
+
+      .country-name {
+        font-size: 17px;
+        font-weight: 500;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <input type="text" id="search-box" />
