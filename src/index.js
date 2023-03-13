@@ -3,7 +3,7 @@ import fetchCountries from './fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const DEBOUNCE_DELAY = 500;
+const DEBOUNCE_DELAY = 300;
 const searchBox = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
@@ -15,16 +15,16 @@ const notifyOptions = {
 };
 
 const getCountry = debounce(() => {
-  const trimmedSearchBoxValue = searchBox.value.trim();
+  const searchBoxValue = searchBox.value.toLowerCase().trim();
 
-  if (!trimmedSearchBoxValue) {
+  if (!searchBoxValue) {
     return erase();
   }
 
   fetchCountries()
     .then(countries => {
       const filteredCountries = countries.filter(({ name: { common } }) =>
-        common.toLowerCase().startsWith(trimmedSearchBoxValue.toLowerCase())
+        common.toLowerCase().startsWith(searchBoxValue)
       );
 
       if (!filteredCountries.length) {
@@ -48,8 +48,31 @@ const getCountry = debounce(() => {
         return renderCountryInfo(filteredCountries);
       }
 
-      erase();
-      renderCountryList(filteredCountries);
+      switch (searchBoxValue) {
+        case 'united states':
+          erase();
+          renderCountryInfo([filteredCountries[1]]);
+          break;
+
+        case 'niger':
+          erase();
+          renderCountryInfo([filteredCountries[0]]);
+          break;
+
+        case 'guinea':
+          erase();
+          renderCountryInfo([filteredCountries[0]]);
+          break;
+
+        case 'dominica':
+          erase();
+          renderCountryInfo([filteredCountries[0]]);
+          break;
+
+        default:
+          erase();
+          renderCountryList(filteredCountries);
+      }
     })
     .catch(error => console.error(error));
 }, DEBOUNCE_DELAY);

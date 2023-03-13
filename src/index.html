@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework 10</title>
     <style>
+      .main-text {
+        font-size: 30px;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      @media screen and (max-width: 467px) {
+        .main-text {
+          font-size: 26px;
+        }
+      }
+
       .country-list {
         display: flex;
         flex-direction: column;
@@ -31,6 +43,24 @@
         height: 1px;
       }
 
+      @media screen and (max-width: 414px) {
+        .country-item::after {
+          width: 350px;
+        }
+      }
+
+      @media screen and (max-width: 382px) {
+        .country-item::after {
+          width: 310px;
+        }
+      }
+
+      @media screen and (max-width: 342px) {
+        .country-item::after {
+          width: 287px;
+        }
+      }
+
       .country-img {
         object-fit: cover;
       }
@@ -49,7 +79,7 @@
       }
 
       .country-info-name {
-        font-size: 25px;
+        font-size: 24px;
         display: inline-block;
         margin-block: 0;
       }
@@ -65,6 +95,7 @@
     </style>
   </head>
   <body>
+    <h1 class="main-text">Type the name of the country</h1>
     <input type="text" id="search-box" />
     <ul class="country-list"></ul>
     <div class="country-info"></div>
