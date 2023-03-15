@@ -44,37 +44,31 @@ const getCountry = debounce(() => {
       }
 
       if (filteredCountries.length === 1) {
-        erase();
         return renderCountryInfo(filteredCountries);
       }
 
       switch (searchBoxValue) {
         case 'united states':
-          erase();
           renderCountryInfo([filteredCountries[1]]);
           break;
 
         case 'niger':
-          erase();
           renderCountryInfo([filteredCountries[0]]);
           break;
 
         case 'guinea':
-          erase();
           renderCountryInfo([filteredCountries[0]]);
           break;
 
         case 'dominica':
-          erase();
           renderCountryInfo([filteredCountries[0]]);
           break;
 
         default:
-          erase();
           renderCountryList(filteredCountries);
       }
     })
-    .catch(error => console.error(error));
+    .catch(console.error);
 }, DEBOUNCE_DELAY);
 
 searchBox.addEventListener('input', getCountry);
@@ -88,6 +82,7 @@ function renderCountryList(filteredCountries) {
     })
     .join('');
 
+  erase();
   countryList.insertAdjacentHTML('afterbegin', countryTags);
 }
 
@@ -114,6 +109,7 @@ function renderCountryInfo(filteredCountries) {
     )
     .join('');
 
+  erase();
   countryInfo.insertAdjacentHTML('afterbegin', countryTags);
 }
 
