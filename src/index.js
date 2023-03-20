@@ -77,8 +77,14 @@ function renderCountryList(filteredCountries) {
   const countryTags = filteredCountries
     .map(({ name: { common }, flags: { svg } }) => {
       return `<li class="country-item">
-              <img class="country-img" src="${svg}" width="40px" height="25px" />
-              <p class="country-name">${common}</p></li>`;
+                <img
+                  class="country-img"
+                  src="${svg}" 
+                  width="40px" 
+                  height="25px" 
+                />
+                <p class="country-name">${common}</p>
+              </li>`;
     })
     .join('');
 
@@ -99,12 +105,23 @@ function renderCountryInfo(filteredCountries) {
         const languagesArray = Object.values(languages);
 
         return `<div class="country-info-box">
-                <img class="country-img" src="${svg}" width="50px" height="35px" />
-                <h3 class="country-info-name">${common}</h3></div>
-                <p class="country-info-text"><span class="country-info-text-first-word">Capital:</span> ${capital}</p>
-                <p class="country-info-text"><span class="country-info-text-first-word">Population:</span> ${population}</p>
-                <p class="country-info-text"><span class="country-info-text-first-word">Languages:
-                </span> ${languagesArray.join(', ')}</p>`;
+                  <img
+                    class="country-img"
+                    src="${svg}" 
+                    width="50px" 
+                    height="35px" 
+                  />
+                  <h3 class="country-info-name">${common}</h3>
+                </div>
+                <p class="country-info-text"><span class="country-info-text-first-word">
+                  Capital:</span> ${capital.join(', ')}
+                </p>
+                <p class="country-info-text"><span class="country-info-text-first-word">
+                  Population:</span> ${population}
+                </p>
+                <p class="country-info-text"><span class="country-info-text-first-word">
+                  Languages:</span> ${languagesArray.join(', ')}
+                </p>`;
       }
     )
     .join('');
